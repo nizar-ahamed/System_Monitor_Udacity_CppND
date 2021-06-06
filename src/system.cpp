@@ -18,12 +18,13 @@ Processor& System::Cpu() { return cpu_; }
 
 vector<Process>& System::Processes() { 
     vector<int> pids = LinuxParser::Pids(); 
+    // Create a set of existing process ids to avoid process replication
     std::set<int> existingPids;
     for(auto& process:processes_){existingPids.insert(process.Pid());}
     for (auto& pid:pids){
         if (existingPids.find(pid) == existingPids.end()) {processes_.emplace_back(pid);}
     }
-    std::sort(processes_.begin(), processes_.end());
+    std::sort(processes_.rbegin(), processes_.rend());
     return processes_; 
 }
 

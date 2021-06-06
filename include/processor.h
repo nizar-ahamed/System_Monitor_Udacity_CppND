@@ -3,11 +3,11 @@
 
 class Processor {
  public:
-  float Utilization();  
+  double Utilization();  
 
  private:
- static float previousActiveJiffies_;
- static float previousIdleJiffies_;
+ static double previousActiveJiffies_;
+ static double previousIdleJiffies_;
 };
 
 #endif
